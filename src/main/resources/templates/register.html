@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Passport Automation System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .register-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background-color: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-submit:hover {
+            background-color: #5568d3;
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+        
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <a href="/" class="back-link">← Back to Home</a>
+        <h2>Create Account</h2>
+        
+        <div th:if="${error}" class="error-message" th:text="${error}"></div>
+        
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" th:field="*{name}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="dateOfBirth">Date of Birth *</label>
+                <input type="date" id="dateOfBirth" th:field="*{dateOfBirth}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="address">Address *</label>
+                <input type="text" id="address" th:field="*{address}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" th:field="*{email}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="mobileNumber">Mobile Number *</label>
+                <input type="text" id="mobileNumber" th:field="*{mobileNumber}" 
+                       pattern="[0-9]{10}" placeholder="10-digit mobile number" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <input type="password" id="password" th:field="*{password}" 
+                       minlength="6" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="role">Register As *</label>
+                <select id="role" th:field="*{role}" required>
+                    <option value="">Select Role</option>
+                    <option value="APPLICANT">Applicant (Citizen)</option>
+                    <option value="PASSPORT_OFFICER">Passport Officer</option>
+                    <option value="POLICE_OFFICER">Police Verification Officer</option>
+                    <option value="ADMINISTRATOR">Administrator</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn-submit">Register</button>
+        </form>
+        
+        <div class="login-link">
+            Already have an account? <a href="/login">Login here</a>
+        </div>
+    </div>
+</body>
+</html>

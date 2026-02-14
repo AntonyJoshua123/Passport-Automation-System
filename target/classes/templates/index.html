@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passport Automation System - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .header {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo h1 {
+            color: white;
+            font-size: 28px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .hero {
+            color: white;
+            margin-bottom: 60px;
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #667eea;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <h1>🛂 Passport Automation System</h1>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="hero">
+            <h2>Welcome to Digital Passport Services</h2>
+            <p>Fast, Secure, and Transparent Passport Application Process</p>
+            <div class="cta-buttons">
+                <a href="/register" class="btn btn-primary">Get Started</a>
+                <a href="/login" class="btn btn-secondary">Sign In</a>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3>📝 Online Application</h3>
+                <p>Submit your passport application online from anywhere, anytime. No need to visit offices for initial submission.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📊 Track Status</h3>
+                <p>Real-time tracking of your application status. Know exactly where your application stands in the process.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📅 Easy Scheduling</h3>
+                <p>Book your document verification appointment at your convenience with our smart scheduling system.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔒 Secure & Safe</h3>
+                <p>Your personal data is encrypted and stored securely. We follow the highest standards of data protection.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⚡ Quick Processing</h3>
+                <p>Automated workflows and digital verification ensure faster processing of your application.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📱 Mobile Friendly</h3>
+                <p>Access the system from any device - desktop, tablet, or smartphone. Fully responsive design.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

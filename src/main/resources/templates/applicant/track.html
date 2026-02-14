@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Track Application</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5; }
+        .header { background-color: #667eea; color: white; padding: 20px 50px; }
+        .container { max-width: 900px; margin: 30px auto; background-color: white; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .detail-row { display: flex; padding: 15px 0; border-bottom: 1px solid #eee; }
+        .detail-label { font-weight: 600; width: 250px; color: #666; }
+        .detail-value { flex: 1; color: #333; }
+        .status-badge { padding: 8px 16px; border-radius: 20px; display: inline-block; font-weight: 600; }
+        .status-approved { background-color: #4CAF50; color: white; }
+        .status-rejected { background-color: #f44336; color: white; }
+        .status-submitted { background-color: #ffc107; color: #000; }
+        .status-under-verification { background-color: #2196F3; color: white; }
+        .btn-back { background-color: #667eea; color: white; padding: 12px 30px; text-decoration: none; display: inline-block; border-radius: 5px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="header"><h1>Application Details</h1></div>
+    <div class="container">
+        <h2>Application #<span th:text="${application.applicationId}"></span></h2>
+        <div style="margin-top: 30px;">
+            <div class="detail-row">
+                <div class="detail-label">Full Name:</div>
+                <div class="detail-value" th:text="${application.fullName}"></div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Date of Birth:</div>
+                <div class="detail-value" th:text="${#temporals.format(application.dateOfBirth, 'dd-MM-yyyy')}"></div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Gender:</div>
+                <div class="detail-value" th:text="${application.gender}"></div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Address:</div>
+                <div class="detail-value" th:text="${application.address}"></div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">City:</div>
+                <div class="detail-value" th:text="${application.city}"></div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">State:</div>
+                <div class="detail-value" th:text="${application.state}"></div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Pincode:</div>
+                <div class="detail-value" th:text="${application.pincode}"></div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Identity Proof:</div>
+                <div class="detail-value" th:text="${application.identityProof}"></div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Address Proof:</div>
+                <div class="detail-value" th:text="${application.addressProof}"></div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Submitted Date:</div>
+                <div class="detail-value" th:text="${#temporals.format(application.submittedDate, 'dd-MM-yyyy HH:mm')}"></div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Application Status:</div>
+                <div class="detail-value">
+                    <span class="status-badge" th:classappend="${'status-' + #strings.toLowerCase(application.status)}" th:text="${application.status}"></span>
+                </div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Police Verification:</div>
+                <div class="detail-value" th:text="${application.policeVerificationStatus}"></div>
+            </div>
+            <div class="detail-row" th:if="${application.remarks}">
+                <div class="detail-label">Remarks:</div>
+                <div class="detail-value" th:text="${application.remarks}"></div>
+            </div>
+        </div>
+        <a href="/applicant/dashboard" class="btn-back">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

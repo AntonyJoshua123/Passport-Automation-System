@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Officer Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            background-color: #667eea;
+            color: white;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .applications-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 0 5px;
+            color: white;
+        }
+        
+        .btn-verify {
+            background-color: #4CAF50;
+        }
+        
+        .btn-not-verify {
+            background-color: #f44336;
+        }
+        
+        .no-applications {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>👮 Police Verification Dashboard</h1>
+        <div>
+            <span th:text="'Welcome, ' + ${session.userName}"></span>
+            <a href="/logout" style="color: white; margin-left: 20px; text-decoration: none;">Logout</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="applications-section">
+            <h2>Applications Pending Police Verification</h2>
+            
+            <div th:if="${applications.isEmpty()}" class="no-applications">
+                <p>No applications pending verification at this time.</p>
+            </div>
+            
+            <table th:if="${!applications.isEmpty()}">
+                <thead>
+                    <tr>
+                        <th>Application ID</th>
+                        <th>Applicant Name</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="app : ${applications}">
+                        <td th:text="${app.applicationId}"></td>
+                        <td th:text="${app.fullName}"></td>
+                        <td th:text="${app.address}"></td>
+                        <td th:text="${app.city}"></td>
+                        <td th:text="${app.state}"></td>
+                        <td>
+                            <form th:action="@{/police/verify/{id}(id=${app.applicationId})}" 
+                                  method="post" style="display: inline;">
+                                <input type="hidden" name="status" value="VERIFIED">
+                                <button type="submit" class="btn btn-verify">Mark Verified</button>
+                            </form>
+                            <form th:action="@{/police/verify/{id}(id=${app.applicationId})}" 
+                                  method="post" style="display: inline;">
+                                <input type="hidden" name="status" value="NOT_VERIFIED">
+                                <button type="submit" class="btn btn-not-verify">Not Verified</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
